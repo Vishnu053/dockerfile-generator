@@ -1,20 +1,33 @@
 <template>
   <v-container>
-    
+    <div id="test"></div>
   </v-container>
 </template>
 
 <script>
-import trends from "./trends";
+import axios from "axios";
 export default {
-  components: { trends },
   data() {
-    return {
-    };
+    return {};
   },
   mounted() {
+    this.getSampleJson();
   },
-  
+  methods: {
+    getSampleJson() {
+      let url = "https://hub.docker.com/v2/search/repositories/?query=alpine";
+      fetch(url, {
+        method: "GET",
+        mode: "no-cors",
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then((r) => {
+          console.log(r);
+        });
+    },
+  },
 };
 </script>
 
